@@ -9,7 +9,11 @@
  * @author omar
  */
 
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class RegisterForm extends javax.swing.JFrame {
 
@@ -133,11 +137,7 @@ public class RegisterForm extends javax.swing.JFrame {
         jButtonRegister.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonRegister.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRegister.setText("Register");
-        jButtonRegister.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegisterActionPerformed(evt);
-            }
-        });
+        jButtonRegister.addActionListener(this::jButtonRegisterActionPerformed);
 
         jButton2.setBackground(new java.awt.Color(242, 38, 19));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -314,40 +314,37 @@ public class RegisterForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelRegisterMouseClicked
 
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
-        
-    }//GEN-LAST:event_jButtonRegisterActionPerformed
-
-    public static void showRegister() {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+            String newUser, systemMsg;
+            char[] newPass;
+            char[] confirmNewPass;
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegisterForm().setVisible(true);
+            newUser = jTextField1.getText();
+            newPass = jPasswordField1.getPassword();
+            confirmNewPass = jPasswordField2.getPassword();
+
+            String strPass = new String(newPass);
+            String strConfPass = new String(confirmNewPass);
+            if(strPass.equals(strConfPass) && !newUser.isEmpty() &&
+                    !strPass.isEmpty()){
+                BufferedWriter out = new BufferedWriter(new FileWriter("Register.txt", true));
+                out.write(newUser);
+                out.write("\t\t");
+                out.write(newPass);
+                out.write(System.getProperty("line.separator"));
+                systemMsg = "New account created, please log in.";
+                System.out.println(systemMsg);
+                jTextField1.setText(null);
+                jPasswordField1.setText(null);
+                jPasswordField2.setText(null);
+                out.close();
             }
-        });
-    }
+            else{
+                systemMsg = "Please enter the missing information.";
+                JOptionPane.showMessageDialog(null, systemMsg);
+            }
+        }catch(IOException E){}
+    }//GEN-LAST:event_jButtonRegisterActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;

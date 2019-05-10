@@ -1,6 +1,9 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.util.Scanner;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -126,6 +129,11 @@ public class LoginForm extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", Font.BOLD, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLoginActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(242, 38, 19));
         jButton2.setFont(new java.awt.Font("Tahoma", Font.BOLD, 14)); // NOI18N
@@ -218,6 +226,35 @@ public class LoginForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jLabelMinMouseClicked
 
+    private void jButtonLoginActionPerformed(ActionEvent ev) {
+        String username, inUsername, inPass, str = "Incorrect username or password.";
+        char[] password;
+        Boolean loginSuccessful = false;
+        username = jTextField1.getText();
+        password = jPasswordField1.getPassword();
+        //Convert char to str
+        String convertPass = new String(password);
+        Scanner fileScan = null;
+        try {
+            fileScan = new Scanner(new File("Register.txt"));
+        }catch(Exception err){}
+
+        while(fileScan.hasNext()){
+            inUsername = fileScan.next();
+            inPass = fileScan.next();
+            if(username.equals(inUsername) && convertPass.equals(inPass)){
+                System.out.println("Login successful");
+                loginSuccessful = true;
+            }
+        }
+        if(!loginSuccessful){
+            JOptionPane.showMessageDialog(null, str);
+            jTextField1.setText(null);
+            jPasswordField1.setText(null);
+        }
+        fileScan.close();
+    }
+
     private void jLabelRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelRegisterMouseClicked
         RegisterForm rgf = new RegisterForm();
         rgf.setVisible(true);
@@ -226,31 +263,6 @@ public class LoginForm extends javax.swing.JFrame {
         rgf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        this.dispose();
     }//GEN-LAST:event_jLabelRegisterMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new LoginForm().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
