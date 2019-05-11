@@ -94,4 +94,11 @@ public class FileUpload {
         frame.pack();
         frame.setVisible(true);
     }
+
+    public static void showFileUpload(JFrame frame) {
+        frame.setContentPane(new FileUpload().MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
 }

@@ -1,23 +1,29 @@
 import javax.swing.*;
-import java.awt.*;
 
-public class MainWindow {
-    private JPanel MainPanel;
+public class MainWindow implements LoginDelegate {
+    private JFrame mainFrame;
 
     public static void main(String[] args) {
         MainWindow mainWindow = new MainWindow();
 
         JFrame frame = new JFrame("PTS");
-        frame.setContentPane(mainWindow.MainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
 
-        RegisterForm rgf = new RegisterForm();
-        rgf.setVisible(true);
-        rgf.pack();
-        rgf.setLocationRelativeTo(null);
-        rgf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        LoginForm login = new LoginForm(mainWindow);
+        login.setVisible(true);
+        login.pack();
+        login.setLocationRelativeTo(null);
+        login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setVisible(true);
+        mainWindow.mainFrame = frame;
+    }
+
+    @Override
+    public void didLogSuccessful(LoginForm loginForm) {
+        loginForm.dispose();
+        FileUpload.showFileUpload(mainFrame);
+
     }
 }
