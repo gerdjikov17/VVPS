@@ -2,6 +2,7 @@ import javax.swing.*;
 
 public class MainWindow implements LoginDelegate {
     private JFrame mainFrame;
+    private JPanel MainPanel;
 
     public static void main(String[] args) {
         MainWindow mainWindow = new MainWindow();
