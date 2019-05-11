@@ -20,9 +20,10 @@ public class LoginForm extends javax.swing.JFrame {
     /**
      * Creates new form LoginForm
      */
-    public LoginForm() {
+    public LoginForm(LoginDelegate loginDelegate) {
         initComponents();
         this.setLocationRelativeTo(null);// center form in the screen
+        this.loginDelegate = loginDelegate;
     }
 
     /**
@@ -245,6 +246,7 @@ public class LoginForm extends javax.swing.JFrame {
             if(username.equals(inUsername) && convertPass.equals(inPass)){
                 System.out.println("Login successful");
                 loginSuccessful = true;
+                this.loginDelegate.didLogSuccessful(this);
             }
         }
         if(!loginSuccessful){
@@ -256,7 +258,7 @@ public class LoginForm extends javax.swing.JFrame {
     }
 
     private void jLabelRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelRegisterMouseClicked
-        RegisterForm rgf = new RegisterForm();
+        RegisterForm rgf = new RegisterForm(this.loginDelegate);
         rgf.setVisible(true);
         rgf.pack();
         rgf.setLocationRelativeTo(null);
@@ -277,5 +279,6 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
+    private LoginDelegate loginDelegate;
     // End of variables declaration//GEN-END:variables
 }

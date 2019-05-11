@@ -20,7 +20,8 @@ public class RegisterForm extends javax.swing.JFrame {
     /**
      * Creates new form RegisterForm
      */
-    public RegisterForm() {
+    public RegisterForm(LoginDelegate loginDelegate) {
+        this.loginDelegate = loginDelegate;
         initComponents();
     }
 
@@ -305,7 +306,7 @@ public class RegisterForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelMinMouseClicked
 
     private void jLabelRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelRegisterMouseClicked
-        LoginForm lgf = new LoginForm();
+        LoginForm lgf = new LoginForm(this.loginDelegate);
         lgf.setVisible(true);
         lgf.pack();
         lgf.setLocationRelativeTo(null);
@@ -368,5 +369,6 @@ public class RegisterForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private LoginDelegate loginDelegate;
     // End of variables declaration//GEN-END:variables
 }
