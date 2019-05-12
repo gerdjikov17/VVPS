@@ -26,6 +26,7 @@ public class FileUpload {
 
                 if (parentFrame != null) {
                     FileDialog fileDialog = new java.awt.FileDialog(parentFrame, "Choose a file:", FileDialog.LOAD);
+                    fileDialog.setFile("*.csv");
                     fileDialog.setVisible(true);
 
                     String selectedFile = fileDialog.getFile();
