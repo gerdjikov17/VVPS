@@ -32,3 +32,5 @@ hs_err_pid*
 # IntelliJ
 out/
 output.txt
+convertedLog.txt
+convertedLogParsed.txt
