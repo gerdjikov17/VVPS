@@ -19,7 +19,7 @@ public class LineModel {
         int lastIndex = line.lastIndexOf("\"");
         time = line.substring(0, lastIndex + 1);
         trimmedLine = line.substring(lastIndex + 2);
-        int firstIndex = line.indexOf(',');
+        int firstIndex = trimmedLine.indexOf(',');
 
         eventContext = trimmedLine.substring(0, firstIndex + 1);
         trimmedLine = trimmedLine.substring(firstIndex + 1);
