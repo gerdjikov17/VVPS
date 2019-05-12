@@ -65,7 +65,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", Font.BOLD, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Login Form");
+        jLabel2.setText("Login");
 
         jLabelMin.setFont(new java.awt.Font("Tahoma", Font.BOLD, 24)); // NOI18N
         jLabelMin.setForeground(new java.awt.Color(255, 255, 255));
@@ -143,7 +143,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabelRegister.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 14)); // NOI18N
         jLabelRegister.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelRegister.setText("click here to create a new account");
+        jLabelRegister.setText("Click here to create a new account");
         jLabelRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelRegister.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
