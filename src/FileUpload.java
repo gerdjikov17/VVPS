@@ -59,6 +59,16 @@ public class FileUpload {
         return new File(FilePath);
     }
 
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Log file upload");
+        frame.setContentPane(new FileUpload().MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(new Dimension(400, 150));
+        frame.setLocationRelativeTo(null);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
     public static void showFileUpload(JFrame frame) {
         frame.setContentPane(new FileUpload().MainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
