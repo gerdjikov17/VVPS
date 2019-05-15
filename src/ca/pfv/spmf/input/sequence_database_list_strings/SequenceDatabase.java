@@ -59,6 +59,7 @@ public class SequenceDatabase {
 						thisLine.charAt(0) != '#' && thisLine.charAt(0) != '%'
 						&& thisLine.charAt(0) != '@') {
 					// split this line according to spaces and process the line
+					System.out.println(thisLine);
 					addSequence(thisLine.split(" "));
 				}
 			}
@@ -92,11 +93,12 @@ public class SequenceDatabase {
 			else if (item.equals("-1")) { 
 				// We sort the itemset to make sure that it is sorted
 				// (it is important for several algorithms)
-				Collections.sort(itemset, new Comparator<String>() {
-					public int compare(String arg0, String arg1) {
-						return arg0.hashCode() - arg1.hashCode();
-					}
-				});
+				Collections.sort(itemset);
+//				Collections.sort(itemset, new Comparator<String>() {
+//					public int compare(String arg0, String arg1) {
+//						return arg0.hashCode() - arg1.hashCode();
+//					}
+//				});
 				// we add the current itemset to the sequence
 				sequence.addItemset(itemset);
 				// we create a new itemset for the next items that we will read (if any).
